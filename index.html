@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Isaiah Notepad</title>
+  <style>
+    body{
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #122312;
+      overflow: hidden;
+    }
+    h2{
+      border-bottom: 1px solid seagreen;
+      color: limegreen;
+    }
+    .container{
+      margin: 50px auto;
+      background-color: white;
+      max-width: 700px;
+      height: 500px;
+      padding: 20px;
+      border: 2px solid seagreen;
+    }
+    textarea{
+     width: 650px;
+     height: 350px;
+     padding: 10px;
+     margin-left: 10px;
+    }
+    textarea:focus{
+      outline: none;
+      border: 1px solid springgreen;
+      font-size: 16px;
+    }
+    .buttons{
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+    }
+    button{
+      border: none;
+      color: white;
+      background-color: yellowgreen;
+      padding: 12px 25px;
+      font-size: 16px;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    button:active{
+      opacity: 0.3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>📝 My NotePad</h2>
+  <textarea name="notepad" id="note" placeholder="Type your message here ..."></textarea>
+  <div class="buttons">
+    <button onclick="clearScreen()">Clear</button>
+    <button onclick="saveNote()">Save</button>
+  </div>
+  </div>
+  <script>
+    const notePad = document.getElementById("note");
+
+    window.onload = () =>{
+      const savedNote = localStorage.getItem("myNote")
+      if(savedNote){
+        notePad.value = savedNote
+      }
+    }
+    
+    function clearScreen(){
+      if(confirm("Do you want to clear your note?")){
+        notePad.value = "";
+        localStorage.removeItem("myNote");
+      }
+    }
+    function saveNote(){
+      localStorage.setItem("myNote", notePad.value);
+      alert("Note has been saved");
+    }
+  </script>
+</body>
+</html>
